@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de Grammaire Anglaise</title>
+    <!-- Tailwind CSS pour le style -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            direction: rtl;
+        }
+        /* Animation pour le Pop-up */
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        .modal-enter-active {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .option-btn.selected {
+            background-color: #3b82f6; /* Blue-500 */
+            color: white;
+            border-color: #2563eb;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <!-- Conteneur Principal -->
+    <div class="w-full max-w-md bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200" id="quiz-container">
+        
+        <!-- En-tête -->
+        <div class="bg-indigo-600 p-6 text-center">
+            <h1 class="text-2xl font-bold text-white"><i class="fas fa-graduation-cap mr-2"></i>English Grammar</h1>
+            <p class="text-indigo-100 text-sm mt-1">Practice makes perfect!</p>
+        </div>
+
+        <!-- Zone de Question (Le div qui change de couleur) -->
+        <div id="question-card" class="p-6 transition-colors duration-500 border-b-4 border-transparent">
+            
+            <!-- Compteur de questions -->
+            <div class="flex justify-between items-center mb-4 text-gray-500 text-sm">
+                <span id="q-number">Question 1</span>
+                <span class="bg-gray-200 px-2 py-1 rounded text-xs font-bold text-gray-700 uppercase" id="rule-category">Grammar</span>
+            </div>
+
+            <!-- La Question -->
+            <h2 class="text-xl font-semibold text-gray-800 mb-6" id="question-text">
+                Chargement de la question...
+            </h2>
+
+            <!-- Les Options -->
+            <div class="space-y-3" id="options-container">
+                <!-- Les boutons seront générés ici par JS -->
+            </div>
+
+            <!-- Message de feedback -->
+            <div id="feedback-msg" class="mt-4 text-center font-bold hidden"></div>
+        </div>
+
+        <!-- Boutons d'action -->
+        <div class="p-6 bg-gray-50 flex gap-3">
+            <button onclick="showExplanation()" class="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-4 rounded-lg transition shadow flex items-center justify-center gap-2">
+                <i class="fas fa-lightbulb"></i> Explication
+            </button>
+            <button onclick="checkAnswer()" id="btn-verify" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition shadow flex items-center justify-center gap-2">
+                <i class="fas fa-check"></i> Vérifier
+            </button>
+            <button onclick="nextQuestion()" id="btn-next" class="hidden flex-1 bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition shadow flex items-center justify-center gap-2">
+                Suivant <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal / Pop-up d'Explication -->
+    <div id="explanation-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden backdrop-blur-sm">
+        <div class="bg-white w-full max-w-lg mx-4 rounded-2xl shadow-2xl transform transition-all p-6 relative">
+            
+            <!-- Bouton fermer -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+
+            <div class="text-center mb-4">
+                <div class="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mx-auto text-2xl mb-3">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800" id="modal-title">Règle de Grammaire</h3>
+            </div>
+
+            <!-- Contenu Explication -->
+            <div class="space-y-4">
+                <!-- Français -->
+                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-700 mb-1"><i class="fas fa-flag"></i> Français</h4>
+                    <p class="text-gray-700 text-sm leading-relaxed" id="expl-fr">
+                        <!-- Texte injecté par JS -->
+                    </p>
+                </div>
+
+                <!-- Arabe -->
+                <div class="bg-green-50 p-4 rounded-lg border-r-4 border-green-500 text-right">
+                    <h4 class="font-bold text-green-700 mb-1" dir="rtl"> العربية <i class="fas fa-globe-africa"></i></h4>
+                    <p class="text-gray-700 text-lg leading-relaxed arabic-text" id="expl-ar" dir="rtl">
+                        <!-- Texte injecté par JS -->
+                    </p>
+                </div>
+            </div>
+
+            <button onclick="closeModal()" class="w-full mt-6 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 rounded-lg transition">
+                Compris / Fhamt / Got it
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // ---------------------------------------------------------
+        // C'EST ICI QUE TU STOCKES TES RÈGLES (DANS CETTE VARIABLE)
+        // ---------------------------------------------------------
+        const questions = [
+            {
+                id: 1,
+                category: "Adjectives",
+                question: "I was very ______ by the documentary.",
+                options: ["interesting", "interested", "interest", "interestingly"],
+                correctIndex: 1, // 'interested' est l'option à l'index 1 (0, 1, 2, 3)
+                ruleTitle: "Adjectifs en -ED vs -ING",
+                explanationFR: "Les adjectifs finissant par <strong>-ED</strong> décrivent une émotion ou un sentiment ressenti par une personne (ex: I am bored). Les adjectifs finissant par <strong>-ING</strong> décrivent la cause de ce sentiment, souvent une chose ou une situation (ex: The movie is boring).",
+                explanationAR: "تُستخدم الصفات المنتهية بـ <strong>-ED</strong> لوصف شعور الشخص (مثال: أنا مهتم). بينما تُستخدم الصفات المنتهية بـ <strong>-ING</strong> لوصف الشيء أو الشخص الذي يسبب هذا الشعور (مثال: الفيلم مثير للاهتمام)."
+            },
+            {
+                id: 2,
+                category: "Tenses",
+                question: "She ______ to Paris last year.",
+                options: ["has gone", "went", "goes", "go"],
+                correctIndex: 1, 
+                ruleTitle: "Past Simple vs Present Perfect",
+                explanationFR: "On utilise le <strong>Past Simple</strong> (went) quand le moment de l'action est terminé et précisé (ici: 'last year'). Le Present Perfect est utilisé quand le temps n'est pas précisé ou a un lien avec le présent.",
+                explanationAR: "نستخدم <strong>الماضي البسيط</strong> عندما يكون زمن الفعل قد انتهى ومحددًا بوضوح (مثل: 'السنة الماضية'). أما المضارع التام فيُستخدم عندما يكون الوقت غير محدد أو له علاقة بالحاضر."
+            }
+            // Tu peux ajouter d'autres règles ici en copiant le bloc {}
+        ];
+
+        let currentQuestionIndex = 0;
+        let selectedOptionIndex = null;
+
+        // Éléments du DOM
+        const questionCard = document.getElementById('question-card');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const feedbackMsg = document.getElementById('feedback-msg');
+        const modal = document.getElementById('explanation-modal');
+        const btnVerify = document.getElementById('btn-verify');
+        const btnNext = document.getElementById('btn-next');
+
+        // Initialisation
+        loadQuestion(currentQuestionIndex);
+
+        function loadQuestion(index) {
+            const data = questions[index];
+            
+            // Reset UI
+            questionCard.className = "p-6 transition-colors duration-500 border-b-4 border-transparent bg-white";
+            feedbackMsg.classList.add('hidden');
+            feedbackMsg.innerHTML = "";
+            selectedOptionIndex = null;
+            btnVerify.classList.remove('hidden');
+            btnNext.classList.add('hidden');
+            
+            // Remplir les données
+            document.getElementById('q-number').innerText = `Question ${index + 1} / ${questions.length}`;
+            document.getElementById('rule-category').innerText = data.category;
+            questionText.innerText = data.question;
+
+            // Générer les options
+            optionsContainer.innerHTML = '';
+            data.options.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = "option-btn w-full text-left p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition flex items-center";
+                btn.onclick = () => selectOption(i, btn);
+                btn.innerHTML = `
+                    <div class="w-6 h-6 rounded-full border-2 border-gray-300 mr-3 flex items-center justify-center checkbox-circle">
+                        <div class="w-3 h-3 rounded-full bg-white hidden indicator"></div>
+                    </div>
+                    <span class="font-medium text-gray-700">${opt}</span>
+                `;
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function selectOption(index, btnElement) {
+            // Si déjà répondu (div coloré), on empêche de changer
+            if(questionCard.classList.contains('bg-green-50') || questionCard.classList.contains('bg-red-50')) return;
+
+            selectedOptionIndex = index;
+
+            // Enlever le style 'selected' de tous les boutons
+            document.querySelectorAll('.option-btn').forEach(b => {
+                b.classList.remove('selected', 'ring-2', 'ring-blue-500', 'border-transparent');
+                b.querySelector('.checkbox-circle').classList.remove('border-white');
+                b.querySelector('.indicator').classList.add('hidden');
+                b.querySelector('.indicator').classList.remove('bg-blue-600');
+            });
+
+            // Ajouter le style au bouton cliqué
+            btnElement.classList.add('selected', 'ring-2', 'ring-blue-500', 'border-transparent');
+            btnElement.querySelector('.checkbox-circle').classList.add('border-white');
+            btnElement.querySelector('.indicator').classList.remove('hidden');
+            btnElement.querySelector('.indicator').classList.add('bg-blue-600');
+        }
+
+        function checkAnswer() {
+            if (selectedOptionIndex === null) {
+                alert("Please select an answer first! (Veuillez choisir une réponse)");
+                return;
+            }
+
+            const currentQ = questions[currentQuestionIndex];
+            const isCorrect = selectedOptionIndex === currentQ.correctIndex;
+
+            // Logique de couleur du DIV (Vert ou Rouge)
+            if (isCorrect) {
+                questionCard.className = "p-6 transition-colors duration-500 border-b-4 border-green-500 bg-green-50";
+                feedbackMsg.innerHTML = '<span class="text-green-700"><i class="fas fa-check-circle"></i> Excellent! Correct Answer.</span>';
+            } else {
+                questionCard.className = "p-6 transition-colors duration-500 border-b-4 border-red-500 bg-red-50";
+                feedbackMsg.innerHTML = `<span class="text-red-700"><i class="fas fa-times-circle"></i> Incorrect. The right answer was: <u>${currentQ.options[currentQ.correctIndex]}</u></span>`;
+            }
+
+            feedbackMsg.classList.remove('hidden');
+            
+            // Basculer les boutons
+            btnVerify.classList.add('hidden');
+            
+            // S'il reste des questions, montrer "Suivant", sinon message de fin
+            if (currentQuestionIndex < questions.length - 1) {
+                btnNext.classList.remove('hidden');
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion(currentQuestionIndex);
+        }
+
+        // --- Logique du Pop-up (Modal) ---
+
+        function showExplanation() {
+            const data = questions[currentQuestionIndex];
+            
+            document.getElementById('modal-title').innerText = data.ruleTitle;
+            document.getElementById('expl-fr').innerHTML = data.explanationFR;
+            document.getElementById('expl-ar').innerHTML = data.explanationAR;
+
+            modal.classList.remove('hidden');
+            modal.querySelector('div').classList.add('modal-enter-active');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        // Fermer le modal si on clique en dehors
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+    </script>
+</body>
+</html>
