@@ -1,4 +1,5 @@
 const questions = [
+    
             {
                 id: 1,
                 category: "Passé Composé",
@@ -129,5 +130,105 @@ const questions = [
                 ruleTitle: "Pluriel en -AIL",
                 explanationFR: "La règle générale est d'ajouter un 's' (un détail -> des détails). Mais attention aux exceptions courantes qui font <strong>-aux</strong> : travail -> travaux, vitrail -> vitraux, corail -> coraux.",
                 explanationAR: "القاعدة العامة هي إضافة 's' (مثال: un détail -> des détails). لكن انتبه للاستثناءات الشائعة التي تتحول إلى <strong>-aux</strong> مثل: travail -> travaux (أعمال)، vitrail -> vitraux، corail -> coraux."
-            }
+            },
+            {
+                id: 14,
+                category: "Démonstratifs",
+                question: "Regarde ______ photo dans ma main.",
+                options: ["ce", "cet", "cette", "ces"],
+                correctIndex: 2,
+                ruleTitle: "Cette (Féminin Singulier)",
+                explanationFR: "On utilise <strong>Cette</strong> devant un nom féminin singulier (une photo -> cette photo).",
+                explanationAR: "نستخدم <strong>Cette</strong> أمام الاسم المفرد المؤنث (une photo -> cette photo)."
+            },
+            {
+                id: 15,
+                category: "Démonstratifs",
+                question: "Vois-tu ______ oiseaux dans le ciel ?",
+                options: ["ce", "cet", "cette", "ces"],
+                correctIndex: 3,
+                ruleTitle: "Ces (Pluriel)",
+                explanationFR: "On utilise <strong>Ces</strong> devant tous les noms au pluriel, qu'ils soient masculins ou féminins (des oiseaux -> ces oiseaux).",
+                explanationAR: "نستخدم <strong>Ces</strong> أمام جميع الأسماء في صيغة الجمع، سواء كانت مذكرًا أو مؤنثًا (des oiseaux -> ces oiseaux)."
+            },
+            {
+                id: 16,
+                category: "Démonstratifs",
+                question: "Sont-ce ______ chaussures près de la porte ?",
+                options: ["ce", "cet", "cette", "ces"],
+                correctIndex: 3,
+                ruleTitle: "Ces (Pluriel)",
+                explanationFR: "Comme pour les oiseaux, 'chaussures' est au pluriel. On utilise donc <strong>Ces</strong>.",
+                explanationAR: "كلمة 'chaussures' (أحذية) في صيغة الجمع، لذا نستخدم <strong>Ces</strong>."
+            },
+            {
+                id: 17,
+                category: "Démonstratifs",
+                question: "______ bâtiment là-bas est la nouvelle bibliothèque.",
+                options: ["Ce", "Cet", "Cette", "Ces"],
+                correctIndex: 0,
+                ruleTitle: "Ce (Masculin Consonne)",
+                explanationFR: "On utilise <strong>Ce</strong> devant un nom masculin singulier qui commence par une consonne (un bâtiment -> ce bâtiment).",
+                explanationAR: "نستخدم <strong>Ce</strong> أمام الاسم المفرد المذكر الذي يبدأ بحرف ساكن (un bâtiment -> ce bâtiment)."
+            },
+            {
+                id: 18,
+                category: "Démonstratifs",
+                question: "Je n'aime pas ______ pommes dans mon assiette.",
+                options: ["ce", "cet", "cette", "ces"],
+                correctIndex: 3,
+                ruleTitle: "Ces (Pluriel)",
+                explanationFR: "Les 'pommes' sont au pluriel. Le démonstratif pluriel est toujours <strong>Ces</strong>.",
+                explanationAR: "كلمة 'pommes' (تفاح) في صيغة الجمع، وأداة الإشارة للجمع هي دائمًا <strong>Ces</strong>."
+            },
+            {
+                id: 19,
+                category: "Démonstratifs",
+                question: "J'adore ______ arbre dans ton jardin.",
+                options: ["ce", "cet", "cette", "ces"],
+                correctIndex: 1,
+                ruleTitle: "Cet (Masculin Voyelle/H)",
+                explanationFR: "Cas particulier : On utilise <strong>Cet</strong> devant un nom masculin singulier qui commence par une voyelle ou un 'h' muet (un arbre -> cet arbre) pour faire la liaison.",
+                explanationAR: "حالة خاصة: نستخدم <strong>Cet</strong> أمام الاسم المفرد المذكر الذي يبدأ بحرف متحرك أو 'h' صامتة لتسهيل النطق."
+            },
+            {
+    id: 20,
+    category: "Prépositions (Pays)",
+    question: "Je rêve de voyager ______ France.",
+    options: ["au", "en", "à", "aux"],
+    correctIndex: 1,
+    ruleTitle: "En (Pays Féminin)",
+    explanationFR: "La France est un pays féminin (elle finit par 'e'). On utilise <strong>En</strong> devant les pays féminins.",
+    explanationAR: "فرنسا (La France) دولة مؤنثة (تنتهي بحرف 'e'). نستخدم <strong>En</strong> أمام الدول المؤنثة."
+  },
+  {
+    id: 21,
+    category: "Prépositions (Pays)",
+    question: "Mon ami habite ______ Maroc.",
+    options: ["en", "au", "à", "aux"],
+    correctIndex: 1,
+    ruleTitle: "Au (Pays Masculin)",
+    explanationFR: "Le Maroc est un pays masculin (il ne finit pas par 'e'). On utilise <strong>Au</strong> devant les pays masculins commençant par une consonne.",
+    explanationAR: "المغرب (Le Maroc) دولة مذكرة (لا تنتهي بحرف 'e'). نستخدم <strong>Au</strong> أمام الدول المذكرة التي تبدأ بحرف ساكن."
+  },
+  {
+    id: 22,
+    category: "Prépositions (Pays)",
+    question: "Il va travailler ______ Portugal l'année prochaine.",
+    options: ["en", "au", "à", "aux"],
+    correctIndex: 1,
+    ruleTitle: "Au (Pays Masculin)",
+    explanationFR: "Le Portugal est masculin. On dit donc <strong>Au</strong> Portugal.",
+    explanationAR: "البرتغال (Le Portugal) دولة مذكرة. لذلك نقول <strong>Au</strong> Portugal."
+  },
+  {
+    id: 23,
+    category: "Prépositions (Pays)",
+    question: "Nous partons ______ Italie demain.",
+    options: ["au", "en", "à", "aux"],
+    correctIndex: 1,
+    ruleTitle: "En (Voyelle)",
+    explanationFR: "L'Italie commence par une voyelle. Devant un pays commençant par une voyelle (même masculin comme l'Iran), on utilise toujours <strong>En</strong>.",
+    explanationAR: "إيطاليا (L'Italie) تبدأ بحرف متحرك. أمام أي دولة تبدأ بحرف متحرك (حتى لو كانت مذكرة مثل إيران)، نستخدم دائمًا <strong>En</strong>."
+  }
         ];

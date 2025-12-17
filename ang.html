@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz de Grammaire Anglaise</title>
+    <title>Quiz de Grammaire Française</title>
     <!-- Tailwind CSS pour le style -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome pour les icônes -->
@@ -38,14 +38,14 @@
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
-
+    
     <!-- Conteneur Principal -->
     <div class="w-full max-w-md bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200" id="quiz-container">
         
         <!-- En-tête -->
         <div class="bg-indigo-600 p-6 text-center">
-            <h1 class="text-2xl font-bold text-white"><i class="fas fa-graduation-cap mr-2"></i>English Grammar</h1>
-            <p class="text-indigo-100 text-sm mt-1">Practice makes perfect!</p>
+            <h1 class="text-2xl font-bold text-white"><i class="fas fa-graduation-cap mr-2"></i>Grammaire Française</h1>
+            <p class="text-indigo-100 text-sm mt-1">Pratiquez pour progresser !</p>
         </div>
 
         <!-- Zone de Question (Le div qui change de couleur) -->
@@ -54,7 +54,7 @@
             <!-- Compteur de questions -->
             <div class="flex justify-between items-center mb-4 text-gray-500 text-sm">
                 <span id="q-number">Question 1</span>
-                <span class="bg-gray-200 px-2 py-1 rounded text-xs font-bold text-gray-700 uppercase" id="rule-category">Grammar</span>
+                <span class="bg-gray-200 px-2 py-1 rounded text-xs font-bold text-gray-700 uppercase" id="rule-category">Grammaire</span>
             </div>
 
             <!-- La Question -->
@@ -72,14 +72,24 @@
         </div>
 
         <!-- Boutons d'action -->
-        <div class="p-6 bg-gray-50 flex gap-3">
-            <button onclick="showExplanation()" class="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-4 rounded-lg transition shadow flex items-center justify-center gap-2">
-                <i class="fas fa-lightbulb"></i> Explication
+        <div class="p-6 bg-gray-50 flex flex-wrap gap-2">
+            <!-- Bouton Précédent -->
+            <button onclick="prevQuestion()" id="btn-prev" class="hidden w-full sm:w-auto flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-4 rounded-lg transition shadow flex items-center justify-center gap-2">
+                <i class="fas fa-arrow-left"></i> Précédent
             </button>
-            <button onclick="checkAnswer()" id="btn-verify" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition shadow flex items-center justify-center gap-2">
+
+            <!-- Bouton Explication -->
+            <button onclick="showExplanation()" class="w-full sm:w-auto flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-4 rounded-lg transition shadow flex items-center justify-center gap-2">
+                <i class="fas fa-lightbulb"></i> <span class="hidden sm:inline">Aide</span>
+            </button>
+
+            <!-- Bouton Vérifier -->
+            <button onclick="checkAnswer()" id="btn-verify" class="w-full sm:w-auto flex-[2] bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition shadow flex items-center justify-center gap-2">
                 <i class="fas fa-check"></i> Vérifier
             </button>
-            <button onclick="nextQuestion()" id="btn-next" class="hidden flex-1 bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition shadow flex items-center justify-center gap-2">
+
+            <!-- Bouton Suivant (Initialement caché) -->
+            <button onclick="nextQuestion()" id="btn-next" class="hidden w-full sm:w-auto flex-[2] bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition shadow flex items-center justify-center gap-2">
                 Suivant <i class="fas fa-arrow-right"></i>
             </button>
         </div>
@@ -126,9 +136,10 @@
         </div>
     </div>
 
+    
     <script>
         // ---------------------------------------------------------
-        // C'EST ICI QUE TU STOCKES TES RÈGLES (DANS CETTE VARIABLE)
+        // C'EST ICI QUE TU STOCKES TES RÈGLES DE FRANÇAIS
         // ---------------------------------------------------------
         const questions = [
             {
@@ -150,8 +161,68 @@
                 ruleTitle: "Past Simple vs Present Perfect",
                 explanationFR: "On utilise le <strong>Past Simple</strong> (went) quand le moment de l'action est terminé et précisé (ici: 'last year'). Le Present Perfect est utilisé quand le temps n'est pas précisé ou a un lien avec le présent.",
                 explanationAR: "نستخدم <strong>الماضي البسيط</strong> عندما يكون زمن الفعل قد انتهى ومحددًا بوضوح (مثل: 'السنة الماضية'). أما المضارع التام فيُستخدم عندما يكون الوقت غير محدد أو له علاقة بالحاضر."
-            }
+            },
             // Tu peux ajouter d'autres règles ici en copiant le bloc {}
+            {
+                "id": 3,
+                "category": "Demonstratives",
+                "question": "Look at ______ picture here in my hand.",
+                "options": ["that", "this", "these", "those"],
+                "correctIndex": 1,
+                "ruleTitle": "This vs That (Singulier)",
+                "explanationFR": "On utilise <strong>This</strong> pour désigner un objet singulier qui est <strong>proche</strong> du locuteur (ici, 'in my hand').",
+                "explanationAR": "نستخدم <strong>This</strong> للإشارة إلى مفرد <strong>قريب</strong> من المتحدث (هنا، 'in my hand' أي في يدي)."
+            },
+            {
+                "id": 4,
+                "category": "Demonstratives",
+                "question": "Can you see ______ birds flying high in the sky?",
+                "options": ["this", "that", "these", "those"],
+                "correctIndex": 3,
+                "ruleTitle": "These vs Those (Pluriel)",
+                "explanationFR": "On utilise <strong>Those</strong> pour désigner des objets au pluriel qui sont <strong>lointains</strong> (ici, 'in the sky').",
+                "explanationAR": "نستخدم <strong>Those</strong> للإشارة إلى جمع <strong>بعيد</strong> (هنا، 'in the sky' أي في السماء)."
+            },
+            {
+                "id": 5,
+                "category": "Demonstratives",
+                "question": "Are ______ your shoes near the door?",
+                "options": ["this", "that", "those", "these"],
+                "correctIndex": 3,
+                "ruleTitle": "These (Pluriel Proche)",
+                "explanationFR": "On utilise <strong>These</strong> pour le pluriel <strong>proche</strong>. Bien que les chaussures soient près de la porte, si le locuteur est à côté, c'est 'These'. (Note: Si le locuteur est loin, ce serait Those). Ici, on assume la proximité contextuelle.",
+                "explanationAR": "نستخدم <strong>These</strong> للجمع <strong>القريب</strong>. (مثال: هل هذه أحذيتك؟)."
+            },
+            {
+                "id": 6,
+                "category": "Demonstratives",
+                "question": "______ building over there is the new library.",
+                "options": ["This", "That", "These", "Those"],
+                "correctIndex": 1,
+                "ruleTitle": "That (Singulier Lointain)",
+                "explanationFR": "On utilise <strong>That</strong> pour un objet singulier qui est <strong>loin</strong> de nous (indiqué par 'over there').",
+                "explanationAR": "نستخدم <strong>That</strong> للمفرد <strong>البعيد</strong> (كما يشير التعبير 'over there' أي هناك)."
+            },
+            {
+                "id": 7,
+                "category": "Demonstratives",
+                "question": "I don't like ______ apples on my plate.",
+                "options": ["that", "those", "these", "this"],
+                "correctIndex": 2,
+                "ruleTitle": "These (Pluriel Proche)",
+                "explanationFR": "Les pommes sont sur l'assiette du locuteur ('my plate'), donc elles sont <strong>proches</strong> et au <strong>pluriel</strong>. On utilise donc <strong>These</strong>.",
+                "explanationAR": "التفاح موجود في طبق المتحدث ('my plate')، إذن هو <strong>قريب</strong> وفي صيغة <strong>الجمع</strong>. لذلك نستخدم <strong>These</strong>."
+            },
+            {
+                "id": 8,
+                "category": "Demonstratives",
+                "question": "Hello? Is ______ John speaking?",
+                "options": ["that", "this", "these", "those"],
+                "correctIndex": 0,
+                "ruleTitle": "Au téléphone (Contexte spécifique)",
+                "explanationFR": "Au téléphone, pour demander qui est l'autre personne (qui est physiquement 'loin' mais connectée), on utilise souvent <strong>That</strong> en anglais britannique ou américain standard.",
+                "explanationAR": "في المحادثات الهاتفية، للسؤال عن هوية الشخص الآخر، نستخدم عادة <strong>That</strong>."
+            }
         ];
 
         let currentQuestionIndex = 0;
@@ -165,6 +236,7 @@
         const modal = document.getElementById('explanation-modal');
         const btnVerify = document.getElementById('btn-verify');
         const btnNext = document.getElementById('btn-next');
+        const btnPrev = document.getElementById('btn-prev');
 
         // Initialisation
         loadQuestion(currentQuestionIndex);
@@ -180,6 +252,13 @@
             btnVerify.classList.remove('hidden');
             btnNext.classList.add('hidden');
             
+            // Gérer le bouton Précédent
+            if (index === 0) {
+                btnPrev.classList.add('hidden');
+            } else {
+                btnPrev.classList.remove('hidden');
+            }
+
             // Remplir les données
             document.getElementById('q-number').innerText = `Question ${index + 1} / ${questions.length}`;
             document.getElementById('rule-category').innerText = data.category;
@@ -224,7 +303,7 @@
 
         function checkAnswer() {
             if (selectedOptionIndex === null) {
-                alert("Please select an answer first! (Veuillez choisir une réponse)");
+                alert("Veuillez choisir une réponse d'abord !");
                 return;
             }
 
@@ -234,10 +313,10 @@
             // Logique de couleur du DIV (Vert ou Rouge)
             if (isCorrect) {
                 questionCard.className = "p-6 transition-colors duration-500 border-b-4 border-green-500 bg-green-50";
-                feedbackMsg.innerHTML = '<span class="text-green-700"><i class="fas fa-check-circle"></i> Excellent! Correct Answer.</span>';
+                feedbackMsg.innerHTML = '<span class="text-green-700"><i class="fas fa-check-circle"></i> Excellent ! Bonne réponse.</span>';
             } else {
                 questionCard.className = "p-6 transition-colors duration-500 border-b-4 border-red-500 bg-red-50";
-                feedbackMsg.innerHTML = `<span class="text-red-700"><i class="fas fa-times-circle"></i> Incorrect. The right answer was: <u>${currentQ.options[currentQ.correctIndex]}</u></span>`;
+                feedbackMsg.innerHTML = `<span class="text-red-700"><i class="fas fa-times-circle"></i> Faux. La bonne réponse était : <u>${currentQ.options[currentQ.correctIndex]}</u></span>`;
             }
 
             feedbackMsg.classList.remove('hidden');
@@ -252,8 +331,17 @@
         }
 
         function nextQuestion() {
-            currentQuestionIndex++;
-            loadQuestion(currentQuestionIndex);
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+            }
         }
 
         // --- Logique du Pop-up (Modal) ---
