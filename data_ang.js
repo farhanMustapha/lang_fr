@@ -79,5 +79,6 @@ const questions = [
                 "ruleTitle": "Au téléphone (Contexte spécifique)",
                 "explanationFR": "Au téléphone, pour demander qui est l'autre personne (qui est physiquement 'loin' mais connectée), on utilise souvent <strong>That</strong> en anglais britannique ou américain standard.",
                 "explanationAR": "في المحادثات الهاتفية، للسؤال عن هوية الشخص الآخر، نستخدم عادة <strong>That</strong>."
-            }
+            },
+            
         ];

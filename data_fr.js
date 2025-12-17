@@ -192,43 +192,203 @@ const questions = [
                 explanationAR: "حالة خاصة: نستخدم <strong>Cet</strong> أمام الاسم المفرد المذكر الذي يبدأ بحرف متحرك أو 'h' صامتة لتسهيل النطق."
             },
             {
-    id: 20,
-    category: "Prépositions (Pays)",
-    question: "Je rêve de voyager ______ France.",
-    options: ["au", "en", "à", "aux"],
-    correctIndex: 1,
-    ruleTitle: "En (Pays Féminin)",
-    explanationFR: "La France est un pays féminin (elle finit par 'e'). On utilise <strong>En</strong> devant les pays féminins.",
-    explanationAR: "فرنسا (La France) دولة مؤنثة (تنتهي بحرف 'e'). نستخدم <strong>En</strong> أمام الدول المؤنثة."
-  },
-  {
-    id: 21,
-    category: "Prépositions (Pays)",
-    question: "Mon ami habite ______ Maroc.",
-    options: ["en", "au", "à", "aux"],
-    correctIndex: 1,
-    ruleTitle: "Au (Pays Masculin)",
-    explanationFR: "Le Maroc est un pays masculin (il ne finit pas par 'e'). On utilise <strong>Au</strong> devant les pays masculins commençant par une consonne.",
-    explanationAR: "المغرب (Le Maroc) دولة مذكرة (لا تنتهي بحرف 'e'). نستخدم <strong>Au</strong> أمام الدول المذكرة التي تبدأ بحرف ساكن."
-  },
-  {
-    id: 22,
-    category: "Prépositions (Pays)",
-    question: "Il va travailler ______ Portugal l'année prochaine.",
-    options: ["en", "au", "à", "aux"],
-    correctIndex: 1,
-    ruleTitle: "Au (Pays Masculin)",
-    explanationFR: "Le Portugal est masculin. On dit donc <strong>Au</strong> Portugal.",
-    explanationAR: "البرتغال (Le Portugal) دولة مذكرة. لذلك نقول <strong>Au</strong> Portugal."
-  },
-  {
-    id: 23,
-    category: "Prépositions (Pays)",
-    question: "Nous partons ______ Italie demain.",
-    options: ["au", "en", "à", "aux"],
-    correctIndex: 1,
-    ruleTitle: "En (Voyelle)",
-    explanationFR: "L'Italie commence par une voyelle. Devant un pays commençant par une voyelle (même masculin comme l'Iran), on utilise toujours <strong>En</strong>.",
-    explanationAR: "إيطاليا (L'Italie) تبدأ بحرف متحرك. أمام أي دولة تبدأ بحرف متحرك (حتى لو كانت مذكرة مثل إيران)، نستخدم دائمًا <strong>En</strong>."
-  }
+                id: 20,
+                category: "Prépositions (Pays)",
+                question: "Je rêve de voyager ______ France.",
+                options: ["au", "en", "à", "aux"],
+                correctIndex: 1,
+                ruleTitle: "En (Pays Féminin)",
+                explanationFR: "La France est un pays féminin (elle finit par 'e'). On utilise <strong>En</strong> devant les pays féminins.",
+                explanationAR: "فرنسا (La France) دولة مؤنثة (تنتهي بحرف 'e'). نستخدم <strong>En</strong> أمام الدول المؤنثة."
+            },
+            {
+                id: 21,
+                category: "Prépositions (Pays)",
+                question: "Mon ami habite ______ Maroc.",
+                options: ["en", "au", "à", "aux"],
+                correctIndex: 1,
+                ruleTitle: "Au (Pays Masculin)",
+                explanationFR: "Le Maroc est un pays masculin (il ne finit pas par 'e'). On utilise <strong>Au</strong> devant les pays masculins commençant par une consonne.",
+                explanationAR: "المغرب (Le Maroc) دولة مذكرة (لا تنتهي بحرف 'e'). نستخدم <strong>Au</strong> أمام الدول المذكرة التي تبدأ بحرف ساكن."
+            },
+            {
+                id: 22,
+                category: "Prépositions (Pays)",
+                question: "Il va travailler ______ Portugal l'année prochaine.",
+                options: ["en", "au", "à", "aux"],
+                correctIndex: 1,
+                ruleTitle: "Au (Pays Masculin)",
+                explanationFR: "Le Portugal est masculin. On dit donc <strong>Au</strong> Portugal.",
+                explanationAR: "البرتغال (Le Portugal) دولة مذكرة. لذلك نقول <strong>Au</strong> Portugal."
+            },
+            {
+                id: 23,
+                category: "Prépositions (Pays)",
+                question: "Nous partons ______ Italie demain.",
+                options: ["au", "en", "à", "aux"],
+                correctIndex: 1,
+                ruleTitle: "En (Voyelle)",
+                explanationFR: "L'Italie commence par une voyelle. Devant un pays commençant par une voyelle (même masculin comme l'Iran), on utilise toujours <strong>En</strong>.",
+                explanationAR: "إيطاليا (L'Italie) تبدأ بحرف متحرك. أمام أي دولة تبدأ بحرف متحرك (حتى لو كانت مذكرة مثل إيران)، نستخدم دائمًا <strong>En</strong>."
+            },
+            {
+                id: 24,
+                category: "Singulier vs Pluriel",
+                question: "Je dois appeler ce ______ pour avoir un devis.",
+                options: ["commercial", "commerciaux", "commerce", "commerciales"],
+                correctIndex: 0,
+                ruleTitle: "Singulier (-AL)",
+                explanationFR: "Le mot 'ce' indique le singulier. Le singulier des mots finissant par ce son s'écrit souvent <strong>-al</strong> (un commercial, un journal).",
+                explanationAR: "كلمة 'ce' تشير للمفرد. المفرد في هذه الحالة ينتهي بـ <strong>-al</strong> (مثل un commercial)."
+            },
+            {
+                id: 25,
+                category: "Singulier vs Pluriel",
+                question: "Tous ces ______ ont dépassé leurs objectifs.",
+                options: ["commercial", "commerciaux", "commerce", "commercialement"],
+                correctIndex: 1,
+                ruleTitle: "Pluriel (-AUX)",
+                explanationFR: "Le mot 'ces' indique le pluriel. Les mots finissant par <strong>-al</strong> au singulier font leur pluriel en <strong>-aux</strong> (un commercial -> des commerciaux).",
+                explanationAR: "كلمة 'ces' تشير للجمع. الكلمات التي تنتهي بـ <strong>-al</strong> في المفرد تجمع بـ <strong>-aux</strong> (un commercial -> des commerciaux)."
+            },
+            {
+                id: 26,
+                category: "Singulier vs Pluriel",
+                question: "Il y a deux grands centres ______ dans cette ville.",
+                options: ["commercial", "commerciaux", "commercials", "commerce"],
+                correctIndex: 1,
+                ruleTitle: "Accord Adjectif (-AUX)",
+                explanationFR: "Ici, 'commerciaux' est un adjectif qui s'accorde avec 'centres' (pluriel). Un centre commercial -> Des centres commerciaux.",
+                explanationAR: "هنا 'commerciaux' صفة تتبع الموصوف 'centres' في الجمع. (Un centre commercial -> Des centres commerciaux)."
+            },
+            {
+                id: 27,
+                category: "Nom vs Adjectif",
+                question: "Pour avoir un bon style, il faut éviter la ______.",
+                options: ["redondante", "redondance", "redondant", "redondances"],
+                correctIndex: 1,
+                ruleTitle: "Nom (Redondance)",
+                explanationFR: "Ici, nous avons l'article 'la' qui introduit un nom féminin. <strong>La redondance</strong> est le nom qui désigne la répétition inutile.",
+                explanationAR: "هنا لدينا أداة التعريف 'la' التي تسبق الاسم المؤنث. <strong>Redondance</strong> هو الاسم الذي يعني التكرار غير الضروري."
+            },
+            {
+                id: 28,
+                category: "Nom vs Adjectif",
+                question: "Cette explication est inutilement ______.",
+                options: ["redondance", "redondant", "redondante", "redondances"],
+                correctIndex: 2,
+                ruleTitle: "Adjectif (Redondante)",
+                explanationFR: "On cherche un adjectif pour qualifier 'cette explication' (féminin singulier). L'adjectif doit donc être <strong>redondante</strong>.",
+                explanationAR: "نبحث عن صفة لوصف 'cette explication' (مفرد مؤنث). لذا يجب أن تكون الصفة <strong>redondante</strong>."
+            },
+            {
+                id: 29,
+                category: "Verbe Devoir (Temps)",
+                question: "Tu ______ faire plus de sport, c'est bon pour la santé.",
+                options: ["dois", "devrais", "devras", "as dû"],
+                correctIndex: 1,
+                ruleTitle: "Conditionnel (Le Conseil)",
+                explanationFR: "Ici, c'est une suggestion ou un conseil poli, pas un ordre strict. On utilise donc le **Conditionnel Présent** : 'Tu devrais' (You should).",
+                explanationAR: "هنا نقدم اقتراحًا أو نصيحة مهذبة، وليس أمرًا صارمًا. لذلك نستخدم **صيغة الشرط** : 'Tu devrais' (ينبغي عليك)."
+            },
+            {
+                id: 30,
+                category: "Verbe Devoir (Temps)",
+                question: "Attention ! Tu ______ t'arrêter au feu rouge.",
+                options: ["devrais", "devais", "dois", "aurais dû"],
+                correctIndex: 2,
+                ruleTitle: "Présent (L'Obligation)",
+                explanationFR: "C'est une règle absolue et immédiate (loi). On utilise le **Présent de l'Indicatif** pour une obligation forte : 'Tu dois' (You must).",
+                explanationAR: "هذه قاعدة مطلقة وفورية (قانون). نستخدم **المضارع** للتعبير عن الالتزام القوي: 'Tu dois' (يجب عليك)."
+            },
+            {
+                id: 31,
+                category: "Verbe Devoir (Temps)",
+                question: "Hier, j'______ attendre mon collègue pendant une heure.",
+                options: ["ai dû", "devrais", "dois", "devrai"],
+                correctIndex: 0,
+                ruleTitle: "Passé Composé (Action Terminée)",
+                explanationFR: "L'action est passée et terminée (hier). On utilise le **Passé Composé** : 'J'ai dû' (I had to). Cela marque un événement ponctuel.",
+                explanationAR: "الحدث ماضٍ ومنتهٍ (أمس). نستخدم **الماضي المركب**: 'J'ai dû' (اضطررت لـ). هذا يشير إلى حدث محدد."
+            },
+            {
+                id: 32,
+                category: "Verbe Devoir (Temps)",
+                question: "Quand j'étais petit, je ______ me coucher à 20h tous les soirs.",
+                options: ["ai dû", "devais", "devrais", "devrai"],
+                correctIndex: 1,
+                ruleTitle: "Imparfait (Habitude Passée)",
+                explanationFR: "C'est un souvenir d'une habitude dans le passé. On utilise l'**Imparfait** : 'Je devais' (I used to have to / I was supposed to).",
+                explanationAR: "هذه ذكرى لعادة في الماضي. نستخدم **الماضي الناقص**: 'Je devais' (كان عليّ أن / اعتدت أن)."
+            },
+            {
+                id: 33,
+                category: "Verbe Devoir (Temps)",
+                question: "Dommage ! Tu ______ venir avec nous à la fête hier soir.",
+                options: ["devras", "dois", "aurais dû", "devrais"],
+                correctIndex: 2,
+                ruleTitle: "Conditionnel Passé (Le Regret)",
+                explanationFR: "On exprime un regret sur quelque chose qui ne s'est pas passé. On utilise le **Conditionnel Passé** : 'Tu aurais dû' (You should have).",
+                explanationAR: "نعبر عن الندم على شيء لم يحدث. نستخدم **الشرط الماضي**: 'Tu aurais dû' (كان ينبغي عليك)."
+            },
+            {
+                id: 34,
+                category: "Féminin/Masculin (-if/-ive)",
+                question: "Mon frère est très ______, il court tous les jours.",
+                options: ["sportive", "sportif", "sportives", "sportifs"],
+                correctIndex: 1,
+                ruleTitle: "Masculin (-if)",
+                explanationFR: "On parle du 'frère' (masculin). L'adjectif masculin finit par <strong>-if</strong> (sportif).",
+                explanationAR: "نتحدث عن 'الأخ' (مذكر). الصفة المذكرة تنتهي بـ <strong>-if</strong> (sportif)."
+            },
+            {
+                id: 35,
+                category: "Féminin/Masculin (-if/-ive)",
+                question: "Ma sœur est aussi très ______.",
+                options: ["sportif", "sportive", "sportifs", "sportives"],
+                correctIndex: 1,
+                ruleTitle: "Féminin (-ive)",
+                explanationFR: "On parle de la 'sœur' (féminin). L'adjectif féminin change le <strong>-if</strong> en <strong>-ive</strong> (sportive).",
+                explanationAR: "نتحدث عن 'الأخت' (مؤنث). الصفة المؤنثة تغير الـ <strong>-if</strong> إلى <strong>-ive</strong> (sportive)."
+            },
+            {
+                id: 36,
+                category: "Féminin/Masculin (-if/-ive)",
+                question: "Ce nouveau projet est très ______.",
+                options: ["créative", "créatif", "créatives", "créatifs"],
+                correctIndex: 1,
+                ruleTitle: "Masculin (-if)",
+                explanationFR: "'Projet' est un mot masculin. On utilise donc la forme en <strong>-if</strong> : créatif.",
+                explanationAR: "'Projet' كلمة مذكرة. لذا نستخدم الصيغة المنتهية بـ <strong>-if</strong> : créatif."
+            },
+            {
+                id: 37,
+                category: "Féminin/Masculin (-if/-ive)",
+                question: "Elle a trouvé une solution ______ au problème.",
+                options: ["créatif", "créative", "créatifs", "créatives"],
+                correctIndex: 1,
+                ruleTitle: "Féminin (-ive)",
+                explanationFR: "'Solution' est féminin (une solution). L'adjectif devient féminin : <strong>créative</strong>.",
+                explanationAR: "'Solution' مؤنث (une solution). الصفة تصبح مؤنثة: <strong>créative</strong>."
+            },
+            {
+                id: 38,
+                category: "Féminin/Masculin (-f/-ve)",
+                question: "C'est un chien très ______.",
+                options: ["vive", "vif", "vives", "vifs"],
+                correctIndex: 1,
+                ruleTitle: "Masculin (-f)",
+                explanationFR: "Pour le masculin (un chien), l'adjectif finit par <strong>-f</strong> (vif).",
+                explanationAR: "للمذكر (un chien)، تنتهي الصفة بـ <strong>-f</strong> (vif)."
+            },
+            {
+                id: 39,
+                category: "Féminin/Masculin (-f/-ve)",
+                question: "J'ai ressenti une douleur ______ au bras.",
+                options: ["vif", "vive", "vifs", "vives"],
+                correctIndex: 1,
+                ruleTitle: "Féminin (-ve)",
+                explanationFR: "'Douleur' est féminin (une douleur). Le <strong>-f</strong> du masculin se transforme en <strong>-ve</strong> au féminin (vif -> vive).",
+                explanationAR: "'Douleur' مؤنث. الـ <strong>-f</strong> في المذكر تتحول إلى <strong>-ve</strong> في المؤنث (vif -> vive)."
+            }
         ];
