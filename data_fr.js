@@ -390,5 +390,15 @@ const questions = [
                 ruleTitle: "Féminin (-ve)",
                 explanationFR: "'Douleur' est féminin (une douleur). Le <strong>-f</strong> du masculin se transforme en <strong>-ve</strong> au féminin (vif -> vive).",
                 explanationAR: "'Douleur' مؤنث. الـ <strong>-f</strong> في المذكر تتحول إلى <strong>-ve</strong> في المؤنث (vif -> vive)."
+            },
+            {
+                id: 40,
+                category: "Accord Participe Passé",
+                question: "Les pièces comptables que j'ai ______.",
+                options: ["comptabilisé", "comptabilisée", "comptabilisés", "comptabilisées"],
+                correctIndex: 3,
+                ruleTitle: "COD avant Avoir",
+                explanationFR: "La règle d'or : Avec <strong>avoir</strong>, si le COD (<em>que</em> = les pièces comptables) est placé <strong>avant</strong> le verbe, on accorde. 'Pièces' est féminin pluriel -> <strong>comptabilisées</strong>.",
+                explanationAR: "القاعدة الذهبية: مع <strong>avoir</strong>، إذا جاء المفعول به (الذي = les pièces comptables) <strong>قبل</strong> الفعل، نطبق المطابقة. كلمة 'Pièces' جمع مؤنث -> <strong>comptabilisées</strong>."
             }
         ];

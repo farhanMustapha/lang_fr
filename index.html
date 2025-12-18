@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz de Grammaire Française</title>
-    <!-- Tailwind CSS pour le style -->
+    <title>Quiz de Grammaire Française - Mode Hybride</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome pour les icônes -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
@@ -20,20 +20,20 @@
             font-family: 'Amiri', serif;
             direction: rtl;
         }
-        /* Animation pour le Pop-up */
-        .modal-enter {
-            opacity: 0;
-            transform: scale(0.9);
-        }
-        .modal-enter-active {
-            opacity: 1;
-            transform: scale(1);
-            transition: opacity 0.3s, transform 0.3s;
-        }
+        .modal-enter { opacity: 0; transform: scale(0.9); }
+        .modal-enter-active { opacity: 1; transform: scale(1); transition: opacity 0.3s, transform 0.3s; }
         .option-btn.selected {
             background-color: #3b82f6; /* Blue-500 */
             color: white;
             border-color: #2563eb;
+        }
+        /* Animation douce pour le changement de mode */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -43,121 +43,130 @@
     <div class="w-full max-w-md bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200" id="quiz-container">
         
         <!-- En-tête -->
-        <div class="bg-indigo-600 p-6 text-center">
-            <h1 class="text-2xl font-bold text-white"><i class="fas fa-graduation-cap mr-2"></i>Grammaire Française</h1>
+        <div class="bg-indigo-600 p-6 text-center relative">
+            <h1 class="text-2xl font-bold text-white"><i class="fas fa-graduation-cap mr-2"></i>Grammaire</h1>
             <p class="text-indigo-100 text-sm mt-1">Pratiquez pour progresser !</p>
+            
+            <!-- Bouton Switch Mode (Nouveau) -->
+            <button onclick="toggleMode()" class="absolute top-4 right-4 text-white bg-indigo-500 hover:bg-indigo-700 p-2 rounded-full shadow-lg transition text-xs flex items-center gap-2 px-3" title="Changer de mode">
+                <i class="fas fa-pen-fancy" id="mode-icon"></i>
+                <span id="mode-label">QCM</span>
+            </button>
         </div>
 
-        <!-- Zone de Question (Le div qui change de couleur) -->
+        <!-- Zone de Question -->
         <div id="question-card" class="p-6 transition-colors duration-500 border-b-4 border-transparent">
             
-            <!-- Compteur de questions -->
+            <!-- Compteur -->
             <div class="flex justify-between items-center mb-4 text-gray-500 text-sm">
                 <span id="q-number">Question 1</span>
                 <span class="bg-gray-200 px-2 py-1 rounded text-xs font-bold text-gray-700 uppercase" id="rule-category">Grammaire</span>
             </div>
 
             <!-- La Question -->
-            <h2 class="text-xl font-semibold text-gray-800 mb-6" id="question-text">
-                Chargement de la question...
+            <h2 class="text-xl font-semibold text-gray-800 mb-6 leading-relaxed" id="question-text">
+                Chargement...
             </h2>
 
-            <!-- Les Options -->
-            <div class="space-y-3" id="options-container">
-                <!-- Les boutons seront générés ici par JS -->
+            <!-- Zone de Réponse (Dynamique : Boutons ou Input) -->
+            <div id="interaction-area" class="space-y-3 min-h-[150px]">
+                <!-- Le contenu sera injecté ici par JS -->
             </div>
 
             <!-- Message de feedback -->
-            <div id="feedback-msg" class="mt-4 text-center font-bold hidden"></div>
+            <div id="feedback-msg" class="mt-4 text-center font-bold hidden text-sm sm:text-base"></div>
         </div>
 
         <!-- Boutons d'action -->
         <div class="p-6 bg-gray-50 flex flex-wrap gap-2">
-            <!-- Bouton Précédent -->
             <button onclick="prevQuestion()" id="btn-prev" class="hidden w-full sm:w-auto flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-4 rounded-lg transition shadow flex items-center justify-center gap-2">
-                <i class="fas fa-arrow-left"></i> Précédent
+                <i class="fas fa-arrow-left"></i>
             </button>
 
-            <!-- Bouton Explication -->
             <button onclick="showExplanation()" class="w-full sm:w-auto flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-4 rounded-lg transition shadow flex items-center justify-center gap-2">
                 <i class="fas fa-lightbulb"></i> <span class="hidden sm:inline">Aide</span>
             </button>
 
-            <!-- Bouton Vérifier -->
             <button onclick="checkAnswer()" id="btn-verify" class="w-full sm:w-auto flex-[2] bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition shadow flex items-center justify-center gap-2">
                 <i class="fas fa-check"></i> Vérifier
             </button>
 
-            <!-- Bouton Suivant (Initialement caché) -->
             <button onclick="nextQuestion()" id="btn-next" class="hidden w-full sm:w-auto flex-[2] bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition shadow flex items-center justify-center gap-2">
                 Suivant <i class="fas fa-arrow-right"></i>
             </button>
         </div>
     </div>
 
-    <!-- Modal / Pop-up d'Explication -->
+    <!-- Modal Explication -->
     <div id="explanation-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden backdrop-blur-sm">
         <div class="bg-white w-full max-w-lg mx-4 rounded-2xl shadow-2xl transform transition-all p-6 relative">
-            
-            <!-- Bouton fermer -->
             <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
                 <i class="fas fa-times text-xl"></i>
             </button>
-
             <div class="text-center mb-4">
                 <div class="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mx-auto text-2xl mb-3">
                     <i class="fas fa-book-open"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-800" id="modal-title">Règle de Grammaire</h3>
+                <h3 class="text-xl font-bold text-gray-800" id="modal-title">Règle</h3>
             </div>
-
-            <!-- Contenu Explication -->
             <div class="space-y-4">
-                <!-- Français -->
                 <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
                     <h4 class="font-bold text-blue-700 mb-1"><i class="fas fa-flag"></i> Français</h4>
-                    <p class="text-gray-700 text-sm leading-relaxed" id="expl-fr">
-                        <!-- Texte injecté par JS -->
-                    </p>
+                    <p class="text-gray-700 text-sm leading-relaxed" id="expl-fr"></p>
                 </div>
-
-                <!-- Arabe -->
                 <div class="bg-green-50 p-4 rounded-lg border-r-4 border-green-500 text-right">
                     <h4 class="font-bold text-green-700 mb-1" dir="rtl"> العربية <i class="fas fa-globe-africa"></i></h4>
-                    <p class="text-gray-700 text-lg leading-relaxed arabic-text" id="expl-ar" dir="rtl">
-                        <!-- Texte injecté par JS -->
-                    </p>
+                    <p class="text-gray-700 text-lg leading-relaxed arabic-text" id="expl-ar" dir="rtl"></p>
                 </div>
             </div>
-
             <button onclick="closeModal()" class="w-full mt-6 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 rounded-lg transition">
-                Compris / Fhamt / Got it
+                Compris / Fhamt
             </button>
         </div>
     </div>
 
     <script src="data_fr.js"></script>
     <script>
-        // ---------------------------------------------------------
-        // C'EST ICI QUE TU STOCKES TES RÈGLES DE FRANÇAIS
-        // ---------------------------------------------------------
+        // --- DONNÉES DU QUIZ (Intégrées pour que ça marche directement) ---
         
 
+        // --- ÉTAT DE L'APPLICATION ---
         let currentQuestionIndex = 0;
         let selectedOptionIndex = null;
+        let isInputMode = false; // false = QCM, true = Écriture
 
-        // Éléments du DOM
+        // --- ÉLÉMENTS DU DOM ---
         const questionCard = document.getElementById('question-card');
         const questionText = document.getElementById('question-text');
-        const optionsContainer = document.getElementById('options-container');
+        const interactionArea = document.getElementById('interaction-area');
         const feedbackMsg = document.getElementById('feedback-msg');
         const modal = document.getElementById('explanation-modal');
         const btnVerify = document.getElementById('btn-verify');
         const btnNext = document.getElementById('btn-next');
         const btnPrev = document.getElementById('btn-prev');
+        const modeLabel = document.getElementById('mode-label');
+        const modeIcon = document.getElementById('mode-icon');
 
-        // Initialisation
+        // --- INITIALISATION ---
         loadQuestion(currentQuestionIndex);
+
+        // --- FONCTIONS ---
+
+        function toggleMode() {
+            isInputMode = !isInputMode;
+            
+            // Mise à jour visuelle du bouton de mode
+            if (isInputMode) {
+                modeLabel.innerText = "Écriture";
+                modeIcon.className = "fas fa-keyboard";
+            } else {
+                modeLabel.innerText = "QCM";
+                modeIcon.className = "fas fa-list-ul";
+            }
+            
+            // Recharger la question avec la nouvelle interface
+            loadQuestion(currentQuestionIndex);
+        }
 
         function loadQuestion(index) {
             const data = questions[index];
@@ -170,41 +179,72 @@
             btnVerify.classList.remove('hidden');
             btnNext.classList.add('hidden');
             
-            // Gérer le bouton Précédent
-            if (index === 0) {
-                btnPrev.classList.add('hidden');
-            } else {
-                btnPrev.classList.remove('hidden');
-            }
+            // Bouton Précédent
+            if (index === 0) btnPrev.classList.add('hidden');
+            else btnPrev.classList.remove('hidden');
 
-            // Remplir les données
+            // Textes
             document.getElementById('q-number').innerText = `Question ${index + 1} / ${questions.length}`;
             document.getElementById('rule-category').innerText = data.category;
             questionText.innerText = data.question;
 
-            // Générer les options
-            optionsContainer.innerHTML = '';
-            data.options.forEach((opt, i) => {
-                const btn = document.createElement('button');
-                btn.className = "option-btn w-full text-left p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition flex items-center";
-                btn.onclick = () => selectOption(i, btn);
-                btn.innerHTML = `
-                    <div class="w-6 h-6 rounded-full border-2 border-gray-300 mr-3 flex items-center justify-center checkbox-circle">
-                        <div class="w-3 h-3 rounded-full bg-white hidden indicator"></div>
-                    </div>
-                    <span class="font-medium text-gray-700">${opt}</span>
+            // --- RENDU SELON LE MODE ---
+            interactionArea.innerHTML = '';
+            interactionArea.classList.add('fade-in');
+
+            if (isInputMode) {
+                // MODE ÉCRITURE
+                const inputWrapper = document.createElement('div');
+                inputWrapper.className = "mt-4";
+                inputWrapper.innerHTML = `
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="user-input">
+                        Tapez votre réponse :
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-indigo-500 transition" 
+                        id="user-input" 
+                        type="text" 
+                        placeholder="Ex: cette, ce, commerciaux..."
+                        autocomplete="off">
                 `;
-                optionsContainer.appendChild(btn);
-            });
+                interactionArea.appendChild(inputWrapper);
+                
+                // Focus automatique sur l'input pour confort (sauf sur mobile peut-être)
+                setTimeout(() => document.getElementById('user-input').focus(), 100);
+
+                // Ajouter écouteur "Entrée" pour valider
+                document.getElementById('user-input').addEventListener("keypress", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        checkAnswer();
+                    }
+                });
+
+            } else {
+                // MODE QCM
+                data.options.forEach((opt, i) => {
+                    const btn = document.createElement('button');
+                    btn.className = "option-btn w-full text-left p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition flex items-center mb-2";
+                    btn.onclick = () => selectOption(i, btn);
+                    btn.innerHTML = `
+                        <div class="w-6 h-6 rounded-full border-2 border-gray-300 mr-3 flex items-center justify-center checkbox-circle flex-shrink-0">
+                            <div class="w-3 h-3 rounded-full bg-white hidden indicator"></div>
+                        </div>
+                        <span class="font-medium text-gray-700">${opt}</span>
+                    `;
+                    interactionArea.appendChild(btn);
+                });
+            }
+            
+            // Retirer l'animation après un court délai
+            setTimeout(() => interactionArea.classList.remove('fade-in'), 300);
         }
 
+        // --- Logique QCM ---
         function selectOption(index, btnElement) {
-            // Si déjà répondu (div coloré), on empêche de changer
             if(questionCard.classList.contains('bg-green-50') || questionCard.classList.contains('bg-red-50')) return;
 
             selectedOptionIndex = index;
 
-            // Enlever le style 'selected' de tous les boutons
             document.querySelectorAll('.option-btn').forEach(b => {
                 b.classList.remove('selected', 'ring-2', 'ring-blue-500', 'border-transparent');
                 b.querySelector('.checkbox-circle').classList.remove('border-white');
@@ -212,39 +252,69 @@
                 b.querySelector('.indicator').classList.remove('bg-blue-600');
             });
 
-            // Ajouter le style au bouton cliqué
             btnElement.classList.add('selected', 'ring-2', 'ring-blue-500', 'border-transparent');
             btnElement.querySelector('.checkbox-circle').classList.add('border-white');
             btnElement.querySelector('.indicator').classList.remove('hidden');
             btnElement.querySelector('.indicator').classList.add('bg-blue-600');
         }
 
+        // --- VÉRIFICATION ---
         function checkAnswer() {
-            if (selectedOptionIndex === null) {
-                alert("Veuillez choisir une réponse d'abord !");
-                return;
+            const currentQ = questions[currentQuestionIndex];
+            let isCorrect = false;
+            let userResponse = "";
+
+            if (isInputMode) {
+                // Vérification Mode Écriture
+                const inputEl = document.getElementById('user-input');
+                userResponse = inputEl.value.trim();
+                
+                if (userResponse === "") {
+                    alert("Veuillez écrire une réponse !");
+                    return;
+                }
+
+                const correctWord = currentQ.options[currentQ.correctIndex];
+                // Comparaison insensible à la casse
+                isCorrect = userResponse.toLowerCase() === correctWord.toLowerCase();
+
+                // Désactiver l'input après réponse
+                inputEl.disabled = true;
+
+            } else {
+                // Vérification Mode QCM
+                if (selectedOptionIndex === null) {
+                    alert("Veuillez choisir une option !");
+                    return;
+                }
+                isCorrect = selectedOptionIndex === currentQ.correctIndex;
             }
 
-            const currentQ = questions[currentQuestionIndex];
-            const isCorrect = selectedOptionIndex === currentQ.correctIndex;
+            // --- FEEDBACK VISUEL ---
+            const correctText = currentQ.options[currentQ.correctIndex];
 
-            // Logique de couleur du DIV (Vert ou Rouge)
             if (isCorrect) {
                 questionCard.className = "p-6 transition-colors duration-500 border-b-4 border-green-500 bg-green-50";
-                feedbackMsg.innerHTML = '<span class="text-green-700"><i class="fas fa-check-circle"></i> Excellent ! Bonne réponse.</span>';
+                feedbackMsg.innerHTML = '<span class="text-green-700 text-lg"><i class="fas fa-check-circle"></i> Bravo ! C\'est correct.</span>';
             } else {
                 questionCard.className = "p-6 transition-colors duration-500 border-b-4 border-red-500 bg-red-50";
-                feedbackMsg.innerHTML = `<span class="text-red-700"><i class="fas fa-times-circle"></i> Faux. La bonne réponse était : <u>${currentQ.options[currentQ.correctIndex]}</u></span>`;
+                feedbackMsg.innerHTML = `
+                    <div class="text-red-700 mb-1"><i class="fas fa-times-circle"></i> Pas tout à fait...</div>
+                    <div class="text-gray-700">La bonne réponse était : <span class="font-bold text-indigo-700 bg-indigo-100 px-2 rounded">${correctText}</span></div>
+                `;
             }
 
             feedbackMsg.classList.remove('hidden');
-            
-            // Basculer les boutons
             btnVerify.classList.add('hidden');
             
-            // S'il reste des questions, montrer "Suivant", sinon message de fin
             if (currentQuestionIndex < questions.length - 1) {
                 btnNext.classList.remove('hidden');
+            } else {
+                // Fin du quiz
+                const finishMsg = document.createElement('div');
+                finishMsg.className = "mt-4 text-center font-bold text-indigo-600";
+                finishMsg.innerHTML = "🎉 Quiz terminé !";
+                interactionArea.appendChild(finishMsg);
             }
         }
 
@@ -262,15 +332,12 @@
             }
         }
 
-        // --- Logique du Pop-up (Modal) ---
-
+        // --- MODAL ---
         function showExplanation() {
             const data = questions[currentQuestionIndex];
-            
             document.getElementById('modal-title').innerText = data.ruleTitle;
             document.getElementById('expl-fr').innerHTML = data.explanationFR;
             document.getElementById('expl-ar').innerHTML = data.explanationAR;
-
             modal.classList.remove('hidden');
             modal.querySelector('div').classList.add('modal-enter-active');
         }
@@ -279,11 +346,9 @@
             modal.classList.add('hidden');
         }
 
-        // Fermer le modal si on clique en dehors
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();
         });
-
     </script>
 </body>
 </html>
