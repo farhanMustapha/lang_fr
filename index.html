@@ -44,15 +44,21 @@
         
         <!-- En-tête -->
         <div class="bg-indigo-600 p-6 text-center relative">
-            <h1 class="text-2xl font-bold text-white"><i class="fas fa-graduation-cap mr-2"></i>Grammaire</h1>
-            <p class="text-indigo-100 text-sm mt-1">Pratiquez pour progresser !</p>
-            
-            <!-- Bouton Switch Mode (Nouveau) -->
-            <button onclick="toggleMode()" class="absolute top-4 right-4 text-white bg-indigo-500 hover:bg-indigo-700 p-2 rounded-full shadow-lg transition text-xs flex items-center gap-2 px-3" title="Changer de mode">
-                <i class="fas fa-pen-fancy" id="mode-icon"></i>
-                <span id="mode-label">QCM</span>
-            </button>
-        </div>
+    
+    <button onclick="window.location.href='angdialogue.html'" 
+            class="absolute top-4 left-4 text-white bg-indigo-500 hover:bg-indigo-700 p-2 rounded-full shadow-lg transition text-xs flex items-center gap-2 px-3" 
+            title="Aller vers Anglais">
+        <i class="fas fa-language"></i> <span>Anglais</span>
+    </button>
+
+    <h1 class="text-2xl font-bold text-white"><i class="fas fa-graduation-cap mr-2"></i>Grammaire</h1>
+    <p class="text-indigo-100 text-sm mt-1">Pratiquez pour progresser !</p>
+    
+    <button onclick="toggleMode()" class="absolute top-4 right-4 text-white bg-indigo-500 hover:bg-indigo-700 p-2 rounded-full shadow-lg transition text-xs flex items-center gap-2 px-3" title="Changer de mode">
+        <i class="fas fa-pen-fancy" id="mode-icon"></i>
+        <span id="mode-label">QCM</span>
+    </button>
+</div>
 
         <!-- Zone de Question -->
         <div id="question-card" class="p-6 transition-colors duration-500 border-b-4 border-transparent">

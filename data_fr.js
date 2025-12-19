@@ -1,4 +1,5 @@
 const questions = [
+  
     
             {
                 id: 1,
@@ -400,5 +401,64 @@ const questions = [
                 ruleTitle: "COD avant Avoir",
                 explanationFR: "La règle d'or : Avec <strong>avoir</strong>, si le COD (<em>que</em> = les pièces comptables) est placé <strong>avant</strong> le verbe, on accorde. 'Pièces' est féminin pluriel -> <strong>comptabilisées</strong>.",
                 explanationAR: "القاعدة الذهبية: مع <strong>avoir</strong>، إذا جاء المفعول به (الذي = les pièces comptables) <strong>قبل</strong> الفعل، نطبق المطابقة. كلمة 'Pièces' جمع مؤنث -> <strong>comptabilisées</strong>."
+            },
+            {
+                id: 41, 
+                category: "Connecteurs Logiques (C1)", 
+                question: "Il est très compétent, ______ il manque parfois de confiance en lui.", 
+                options: ["néanmoins", "parce que", "puisque", "donc"], 
+                correctIndex: 0, 
+                ruleTitle: "L'Opposition (Soutenu)",
+                explanationFR: "<strong>Néanmoins</strong> est un connecteur d'opposition de registre soutenu (C1), synonyme de 'pourtant' ou 'cependant'.",
+                explanationAR: "<strong>Néanmoins</strong> هي أداة ربط تعبر عن التعارض بمستوى لغوي رفيع، ومرادفها 'pourtant'."
+            },
+             {
+                id: 42, category: "Confusion Fréquente", 
+                question: "Il a beaucoup révisé, ______ il a raté son examen.", 
+                options: ["pourtant", "portant", "pour temps", "port temps"], 
+                correctIndex: 0, 
+                ruleTitle: "Pourtant vs Portant",
+                explanationFR: "<strong>Pourtant</strong> (cependant) exprime l'opposition. <strong>Portant</strong> est le participe présent du verbe porter (ex: un mur portant).",
+                explanationAR: "<strong>Pourtant</strong> (لكن/مع ذلك) تعبر عن التناقض. أما <strong>Portant</strong> فهي اسم الفاعل من فعل 'porter' (يحمل)."
+            },
+            {
+                id: 43,
+                category: "Connecteurs Logiques",
+                question: "Dépêche-toi, ______ tu vas rater ton train !",
+                options: ["autrement", "autre", "autres", "autre part"],
+                correctIndex: 0,
+                ruleTitle: "Autrement (Sinon)",
+                explanationFR: "Ici, <strong>autrement</strong> signifie 'sinon' (otherwise). On l'utilise pour annoncer une conséquence si on ne fait pas quelque chose.",
+                explanationAR: "هنا، <strong>autrement</strong> تعني 'وإلا' (sinon). نستخدمها للتحذير من عاقبة عدم القيام بشيء ما."
+            },
+            {
+                id: 44,
+                category: "Vocabulaire",
+                question: "Ce week-end, je vais ______ à ma tante.",
+                options: ["visiter", "rendre visite", "regarder", "voir"],
+                correctIndex: 1,
+                ruleTitle: "Visiter vs Rendre visite",
+                explanationFR: "Attention ! On <strong>visite</strong> un lieu (une ville, un musée), mais on <strong>rend visite</strong> à une personne.",
+                explanationAR: "انتبه! نستخدم <strong>visiter</strong> للأماكن (مدينة، متحف)، بينما نستخدم <strong>rendre visite</strong> للأشخاص."
+            },
+            {
+                id: 45,
+                category: "Expressions",
+                question: "Je ne sais pas quoi faire, je suis vraiment dans le ______.",
+                options: ["pétrin", "pain", "pépin", "chemin"],
+                correctIndex: 0,
+                ruleTitle: "Être dans le pétrin",
+                explanationFR: "'Être dans le pétrin' est une expression familière qui signifie être dans une situation très difficile ou avoir de gros ennuis.",
+                explanationAR: "'Être dans le pétrin' تعبير يعني الوقوع في ورطة كبيرة أو مأزق صعب."
+            },
+            {
+                id: 46,
+                category: "Expressions",
+                question: "J'ai ______ qu'il allait y avoir une grève demain.",
+                options: ["entendu dire", "entendu parler", "entendu dit", "entendu raconter"],
+                correctIndex: 0,
+                ruleTitle: "Entendre dire que",
+                explanationFR: "On utilise <strong>entendre dire que</strong> suivi d'une phrase pour rapporter une information (I heard that...). On utilise 'entendre parler de' avec un nom (I heard about...).",
+                explanationAR: "نستخدم <strong>entendre dire que</strong> متبوعة بجملة لنقل معلومة (سمعت أن...). بينما نستخدم 'entendre parler de' مع الأسماء (سمعت عن...)."
             }
         ];
