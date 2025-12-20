@@ -1,5 +1,87 @@
 const questions = [
+
+            {
+            "id": 1,
+            "category": "Pronoms Démonstratifs",
+            "question": "Je ne sais pas quel livre choisir. Je prends ______ ?",
+            "options": ["celui", "celui-ci", "celle-ci", "ceux-ci"],
+            "correctIndex": 1,
+            "ruleTitle": "Celui-ci (Masculin Singulier)",
+            "explanationFR": "Le mot 'livre' est masculin singulier. On utilise <strong>celui-ci</strong> pour désigner un objet proche ou que l'on montre du doigt.",
+            "explanationAR": "كلمة 'livre' مذكر مفرد. نستخدم <strong>celui-ci</strong> للإشارة إلى شيء قريب أو شيء نشير إليه الآن."
+            },
+            {
+            "id": 2,
+            "category": "Pronoms Démonstratifs",
+            "question": "Parmi toutes ces fleurs, je préfère ______.",
+            "options": ["ceux-là", "celle-là", "celles", "celles-là"],
+            "correctIndex": 3,
+            "ruleTitle": "Celles-là (Féminin Pluriel)",
+            "explanationFR": "'Fleurs' est féminin pluriel. On utilise <strong>celles-là</strong> pour désigner un groupe spécifique parmi d'autres.",
+            "explanationAR": "كلمة 'Fleurs' مؤنث جمع. نستخدم <strong>celles-là</strong> للإشارة إلى مجموعة محددة من بين مجموعات أخرى."
+            },
+            {
+            "id": 3,
+            "category": "Pronoms Démonstratifs",
+            "question": "Regarde ces deux photos : ______ est floue, mais ______ est magnifique.",
+            "options": ["celui-ci / celui-là", "celle / celle", "celle-ci / celle-là", "ceux-ci / ceux-là"],
+            "correctIndex": 2,
+            "ruleTitle": "Celle-ci / Celle-là (Opposition)",
+            "explanationFR": "On oppose deux objets féminins ('photos'). <strong>Celle-ci</strong> désigne la plus proche et <strong>celle-là</strong> la plus lointaine.",
+            "explanationAR": "نحن نقارن بين شيئين مؤنثين ('photos'). <strong>Celle-ci</strong> تشير للقريب و <strong>celle-là</strong> تشير للبعيد."
+            },
+            {
+            "id": 4,
+            "category": "Pronoms Démonstratifs",
+            "question": "Mes clés ? Ce sont ______ qui sont sur la table.",
+            "options": ["celles-ci", "celles", "ceux", "celle"],
+            "correctIndex": 1,
+            "ruleTitle": "Celles (Forme simple)",
+            "explanationFR": "On utilise la forme simple <strong>celles</strong> car elle est suivie d'une proposition relative introduite par 'qui'.",
+            "explanationAR": "نستخدم الصيغة البسيطة <strong>celles</strong> لأنها متبوعة بجملة صلة تبدأ بـ 'qui'."
+            },
+            {
+            "id": 5,
+            "category": "Pronoms Démonstratifs",
+            "question": "Il y a deux chemins : ______ mène au village, l'autre à la forêt.",
+            "options": ["celle-ci", "celui", "ceux-ci", "celui-ci"],
+            "correctIndex": 3,
+            "ruleTitle": "Celui-ci (Désignation)",
+            "explanationFR": "'Chemin' est masculin singulier. <strong>Celui-ci</strong> permet de désigner précisément l'un des deux éléments présentés.",
+            "explanationAR": "كلمة 'Chemin' مذكر مفرد. نستخدم <strong>celui-ci</strong> لتمييز أحد العنصرين المعروضين بدقة."
+            },
+            {
+            "id": 6,
+            "category": "Pronoms Démonstratifs",
+            "question": "Tes résultats sont meilleurs que ______ de ton frère.",
+            "options": ["ceux-là", "celui", "ceux", "celles"],
+            "correctIndex": 2,
+            "ruleTitle": "Ceux (Suivi de 'de')",
+            "explanationFR": "On utilise la forme simple <strong>ceux</strong> (masculin pluriel pour 'résultats') car elle est suivie du complément 'de'.",
+            "explanationAR": "نستخدم الصيغة البسيطة <strong>ceux</strong> (جمع مذكر لـ 'résultats') لأنها متبوعة بالمضاف إليه 'de'."
+            },
+            {
+            "id": 7,
+            "category": "Pronoms Démonstratifs",
+            "question": "De toutes les solutions proposées, ______ me semble la plus risquée.",
+            "options": ["celui-ci", "celle", "celles-ci", "celle-ci"],
+            "correctIndex": 3,
+            "ruleTitle": "Celle-ci (Féminin Singulier)",
+            "explanationFR": "'Solution' est féminin singulier. <strong>Celle-ci</strong> désigne la solution dont on parle actuellement.",
+            "explanationAR": "كلمة 'Solution' مؤنث مفرد. نستخدم <strong>celle-ci</strong> للإشارة إلى الحل الذي نتحدث عنه حالياً."
+            },
+            {
+            "id": 8,
+            "category": "Pronoms Démonstratifs",
+            "question": "Ce gâteau est bon, mais ______ est encore meilleur !",
+            "options": ["celui", "celui-là", "celle-là", "ceux-là"],
+            "correctIndex": 1,
+            "ruleTitle": "Celui-là (Éloignement/Comparaison)",
+            "explanationFR": "<strong>Celui-là</strong> marque l'opposition ou l'éloignement par rapport au premier gâteau mentionné.",
+            "explanationAR": "تستخدم <strong>celui-là</strong> للإشارة إلى الفرق أو البعد مقارنة بأول قطعة حلوى تم ذكرها."
+            },
   
+    //---------------------------
     
             {
                 id: 1,
@@ -460,5 +542,9 @@ const questions = [
                 ruleTitle: "Entendre dire que",
                 explanationFR: "On utilise <strong>entendre dire que</strong> suivi d'une phrase pour rapporter une information (I heard that...). On utilise 'entendre parler de' avec un nom (I heard about...).",
                 explanationAR: "نستخدم <strong>entendre dire que</strong> متبوعة بجملة لنقل معلومة (سمعت أن...). بينما نستخدم 'entendre parler de' مع الأسماء (سمعت عن...)."
-            }
+            },
+
+
+            //----------
+            
         ];
