@@ -217,7 +217,78 @@
     <!-- JavaScript -->
     <script>
         // --- DATA & CONFIG ---
+        
+        // NOUVEAU: Données Quiz/Exemples au format demandé
+        const grammarQuizData = [
+            {
+                id: 50,
+                category: "Grammaire",
+                question: "Ton vélo est cassé ? Prends ______ de ton frère.",
+                options: ["celui", "celle", "ceux", "celles"],
+                correctIndex: 0,
+                ruleTitle: "Celui (Masculin Singulier)",
+                explanationFR: "On remplace 'le vélo' (masculin singulier) par 'celui'. Ici, 'celui de ton frère' exprime la possession.",
+                explanationAR: "نستبدل 'le vélo' (مفرد مذكر) بـ 'celui'. هنا، 'celui de ton frère' تُعبر عن الملكية (دراجة أخيك)."
+            },
+            {
+                id: 51,
+                category: "Grammaire",
+                question: "Quelle voiture préfères-tu ? ______ ou la rouge ?",
+                options: ["Celui-ci", "Celle-ci", "Ceux-ci", "Celles-ci"],
+                correctIndex: 1,
+                ruleTitle: "Celle-ci (Féminin Singulier)",
+                explanationFR: "On parle d'une 'voiture' (féminin singulier). On utilise 'celle-ci' pour désigner celle qui est proche ou pour faire un choix.",
+                explanationAR: "نتحدث عن 'voiture' (مفرد مؤنث). نستخدم 'celle-ci' للإشارة إلى القريبة أو للاختيار."
+            },
+            {
+                id: 52,
+                category: "Grammaire",
+                question: "J'ai rangé les dossiers. ______ qui sont sur le bureau sont urgents.",
+                options: ["Celui", "Celle", "Ceux", "Celles"],
+                correctIndex: 2,
+                ruleTitle: "Ceux (Masculin Pluriel)",
+                explanationFR: "On remplace 'les dossiers' (masculin pluriel) par 'ceux'. 'Ceux qui...' introduit une proposition relative.",
+                explanationAR: "نستبدل 'les dossiers' (جمع مذكر) بـ 'ceux'. عبارة 'Ceux qui...' تُستخدم لتقديم صلة الموصول (الذين...)."
+            },
+            {
+                id: 53,
+                category: "Grammaire",
+                question: "Regarde ces fleurs ! J'adore ______ qui sont jaunes.",
+                options: ["celui", "celle", "ceux", "celles"],
+                correctIndex: 3,
+                ruleTitle: "Celles (Féminin Pluriel)",
+                explanationFR: "On remplace 'les fleurs' (féminin pluriel) par 'celles'.",
+                explanationAR: "نستبدل 'les fleurs' (جمع مؤنث) بـ 'celles'."
+            },
+            {
+                id: 54,
+                category: "Expressions",
+                question: "J'ai ______ qu'il allait y avoir une grève demain.",
+                options: ["entendu dire", "entendu parler", "entendu dit", "entendu raconter"],
+                correctIndex: 0,
+                ruleTitle: "Entendre dire que",
+                explanationFR: "On utilise <strong>entendre dire que</strong> suivi d'une phrase pour rapporter une information (I heard that...).",
+                explanationAR: "نستخدم <strong>entendre dire que</strong> متبوعة بجملة لنقل معلومة (سمعت أن...)."
+            }
+        ];
+
         const library = [
+            {
+                id: 'grammar_demo_fr',
+                title: 'Grammaire : Celui, Celle...',
+                desc: 'Pratiquer "Celui-ci, Celle-là, Ceux, Celles" en contexte.',
+                level: 'Intermédiaire',
+                levelColor: 'bg-purple-100 text-purple-700',
+                lang: 'fr-FR',
+                script: `AI: Regarde ces deux chemises. Tu préfères laquelle ?
+Moi: Je préfère celle-ci, la bleue.
+AI: Pourquoi pas la rouge ?
+Moi: Celle-là est trop grande pour moi.
+AI: D'accord. Et que penses-tu de ces pantalons ?
+Moi: J'aime bien ceux qui sont en vitrine.
+AI: Tu as bon goût. Et ces chaussures ?
+Moi: Je vais prendre celles que tu m'as montrées hier.`
+            },
             {
                 id: 'boulangerie_fr',
                 title: 'À la Boulangerie',
@@ -668,7 +739,9 @@ Now continue the conversation naturally as the 'AI' character. Keep responses co
             "hello": "bonjour", "baguette": "baguette de pain", "name": "nom",
             "croissant": "viennoiserie", "working": "travailler", "software": "logiciel",
             "challenge": "défi", "water": "eau", "food": "nourriture",
-            "boulangerie": "bakery", "pain": "bread", "monsieur": "sir", "s'il vous plaît": "please"
+            "boulangerie": "bakery", "pain": "bread", "monsieur": "sir", "s'il vous plaît": "please",
+            "celui-ci": "celui qui est ici (proche)", "celle-là": "celle qui est là-bas (loin)", 
+            "ceux": "les objets (masculin)", "celles": "les objets (féminin)"
         };
 
         function handleSelection() {
